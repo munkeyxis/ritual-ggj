@@ -34,14 +34,21 @@ public class PlayerControl : MonoBehaviour {
 		movement = new Vector2 (speed.x * inputX, speed.y * inputY);
 
 		if (movement.y > 0) {
+			animator.speed = 1;
 			animator.SetInteger ("Dir", 0);
 		} else if (movement.y < 0) {
+			animator.speed = 1;
 			animator.SetInteger ("Dir", 2);
 		} else if (movement.x > 0) {
+			animator.speed = 1;
 			animator.SetInteger ("Dir", 1);
 		} else if (movement.x < 0) {
+			animator.speed = 1;
 			animator.SetInteger ("Dir", 3);
-		} 
+		} else {
+			animator.speed = 0;
+		}
+
 		//else {
 		//	animator.SetInteger ("Dir", 5);
 		//}
