@@ -25,8 +25,28 @@ public class TownManager : MonoBehaviour, IGameManager
 	public void MoveCharacterToTown(int destinationTownIndex) {
 		if (isTownAdjacent(destinationTownIndex)) {
 			resetPlayPresence();
-			_towns[destinationTownIndex].setPlayerPresent(true);
+			Town town = _towns[destinationTownIndex];
+			town.setPlayerPresent(true);
+			beginCombat(town);
 		}
+	}
+
+	void beginCombat(Town town) {
+		Manager.CombatData.setPlayerElement(ElementTypes.Fire);
+		Manager.CombatData.setIsNeutral(town);
+		Manager.CombatData.setTownType(town._elementType);
+		Application.LoadLevel("TownBattle");
+	}
+
+	public int GetElementCountForCharacter(ControlledBy character) {
+		int elementCount = 0;
+
+		foreach (Town town in _towns) {
+			if (town._controlledBy == character) {
+				elementCount++;
+			}
+		}
+		return elementCount;
 	}
 
 	bool isTownAdjacent(int destinationTownIndex) {

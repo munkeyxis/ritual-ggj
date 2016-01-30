@@ -8,7 +8,7 @@ public class Town {
 	bool _underAttack = false;
 	int _turnsUntilTaken = 0;
 	public bool _playerPresent { get; private set;}
-	ElementTypes _elementType;
+	public ElementTypes _elementType { get; private set; }
 	public List<int> _adjacentTownIndexes { get; private set; }
 
 	public Town(Vector2 position, ControlledBy controlledBy, ElementTypes type, bool playerPresent) {
