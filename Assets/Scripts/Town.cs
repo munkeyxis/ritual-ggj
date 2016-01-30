@@ -7,7 +7,7 @@ public class Town {
 	public Vector2 _position { get; private set; }
 	bool _underAttack = false;
 	int _turnsUntilTaken = 0;
-	bool _playerPresent = false;
+	public bool _playerPresent { get; private set;}
 	ElementTypes _elementType;
 	List<Town> _adjacentTowns = new List<Town>();
 
