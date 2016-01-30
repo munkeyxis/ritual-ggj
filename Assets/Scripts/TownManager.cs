@@ -18,11 +18,21 @@ public class TownManager : MonoBehaviour, IGameManager
 
 		// starting enemy town
 		_towns.Add(new Town(new Vector2(-5, 2), ControlledBy.Enemy, ElementTypes.Water, false));
+
+		assignAdjacentcy();
 	}
 
 	public void MoveCharacterToTown(int townIndex) {
 		resetPlayPresence();
 		_towns[townIndex].setPlayerPresent(true);
+	}
+
+	void assignAdjacentcy() {
+		_towns[0].assignAdjacentTownIndexes(new List<int>(){1,2});
+		_towns[1].assignAdjacentTownIndexes(new List<int>(){0,2});
+		_towns[2].assignAdjacentTownIndexes(new List<int>(){0,1,3,4});
+		_towns[3].assignAdjacentTownIndexes(new List<int>(){2,4});
+		_towns[4].assignAdjacentTownIndexes(new List<int>(){2,3});
 	}
 
 	void resetPlayPresence() {
