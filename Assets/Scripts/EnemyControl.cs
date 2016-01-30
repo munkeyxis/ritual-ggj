@@ -12,6 +12,7 @@ public class EnemyControl : MonoBehaviour {
 	private Vector2 movement;
 	private Rigidbody2D phys;
 	private float nextShot=0;
+	private Animator animator;
 
 	private readonly Vector2 up = new Vector2(0,1);
 	private readonly Vector2 left = new Vector2(-1,0);
@@ -25,6 +26,7 @@ public class EnemyControl : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		phys = GetComponent<Rigidbody2D> ();
+		animator = GetComponent<Animator> ();
 	}
 
 	bool CheckShot(Vector2 dir)
@@ -38,11 +40,11 @@ public class EnemyControl : MonoBehaviour {
 		hasShot = Physics2D.Raycast (transform.position, dir, Mathf.Infinity,(1 << LayerMask.NameToLayer("Player")) | (1 << LayerMask.NameToLayer("PlayerShot")) | (1 << LayerMask.NameToLayer("Obstacle")));
 		
 		if (hasShot.collider != null) {
-			if (hasShot.collider.name.Equals ("Player")) {
+			if (hasShot.collider.GetComponent<PlayerControl>()!=null) {
 				return true;
-			} else if (hasShot.collider.name.Equals ("skull")) {
+			} else if (hasShot.collider.GetComponent<ShotScript>()!=null) {
 				shotPhys = hasShot.collider.GetComponent<Rigidbody2D> ();
-				if (shotPhys.velocity.y < 0) {
+				if ((shotPhys.velocity.y < 0)) {
 					dodging = true;
 					dodgeWhat = shotPhys;
 					dodgestart = transform.position;
@@ -108,6 +110,16 @@ public class EnemyControl : MonoBehaviour {
 					movement = new Vector2 ((xdist / Mathf.Abs (xdist)) * speed.x, 0);
 			}
 		}
+
+		if (movement.y > 0) {
+			animator.SetInteger ("Dir", 0);
+		} else if (movement.y < 0) {
+			animator.SetInteger ("Dir", 2);
+		} else if (movement.x > 0) {
+			animator.SetInteger ("Dir", 1);
+		} else if (movement.x < 0) {
+			animator.SetInteger ("Dir", 3);
+		} 
 
 		// Clamp enemy to screen
 		
