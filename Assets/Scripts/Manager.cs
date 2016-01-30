@@ -14,5 +14,9 @@ public class Manager : MonoBehaviour {
 
 		_startupList = new List<IGameManager>();
 		_startupList.Add(TownManager);
+
+		foreach (IGameManager manager in _startupList) {
+			manager.StartUp();
+		}
 	}
 }
