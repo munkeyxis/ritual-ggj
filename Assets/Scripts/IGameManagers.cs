@@ -2,6 +2,6 @@
 using System.Collections;
 
 public interface IGameManager {
-	void Startup();
+	void StartUp();
 }
 
