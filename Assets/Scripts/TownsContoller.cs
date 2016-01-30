@@ -8,6 +8,7 @@ public class TownsContoller : MonoBehaviour {
 	public GameObject PlayerControlRingPrefab;
 	public GameObject EnemyControlRingPrefab;
 	List<Town> _townsDisplayed;
+	GameObject playerInstance;
 
 	void Start () {
 		_townsDisplayed = new List<Town> ();
@@ -15,22 +16,41 @@ public class TownsContoller : MonoBehaviour {
 		drawGameIcons();
 	}
 
-	public void drawGameIcons() {
+	void drawGameIcons() {
 		for(int i = 0; i < Manager.TownManager._towns.Count; i++) {
 			Town town = Manager.TownManager._towns[i];
-			GameObject townInstance = Instantiate (TownPrefab);
-			townInstance.transform.SetParent (this.transform);
-			townInstance.transform.position = town._position;
-			townInstance.GetComponent<TownController>().setTownIndex(i);
 
-			displayPlayerIfNecessary(town);
+			drawTownIcons(town, i);
+			instantiatePlayerIconIfNecessary(town);
 			displayControlRingIfNecessary (town);
 		}
 	}
 
-	void displayPlayerIfNecessary(Town town) {
+	public void redrawPlayerAndControlRings() {
+		for(int i = 0; i < Manager.TownManager._towns.Count; i++) {
+			Town town = Manager.TownManager._towns[i];
+
+			movePlayerToThisTownIfNecessary(town);
+			displayControlRingIfNecessary (town);
+		}
+	}
+
+	void movePlayerToThisTownIfNecessary(Town town) {
 		if(town._playerPresent) {
-			GameObject playerInstance = Instantiate(PlayerPrefab);
+			playerInstance.transform.position = new Vector3(town._position.x, town._position.y, -1);
+		}
+	}
+
+	void drawTownIcons(Town town, int townIndex) {
+		GameObject townInstance = Instantiate (TownPrefab);
+		townInstance.transform.SetParent (this.transform);
+		townInstance.transform.position = town._position;
+		townInstance.GetComponent<TownController>().setTownIndex(townIndex);
+	}
+
+	void instantiatePlayerIconIfNecessary(Town town) {
+		if(town._playerPresent) {
+			playerInstance = Instantiate(PlayerPrefab);
 			playerInstance.transform.position = new Vector3(town._position.x, town._position.y, -1);
 		}
 	}
