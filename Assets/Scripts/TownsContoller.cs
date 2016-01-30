@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class TownsContoller : MonoBehaviour {
 	public GameObject TownPrefab;
 	public GameObject PlayerPrefab;
+	public GameObject PlayerControlRingPrefab;
+	public GameObject EnemyControlRingPrefab;
 	List<Town> _townsDisplayed;
 
 	void Start () {
