@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class Town {
 	ControlledBy _controlledBy;
-	Vector2 _position;
+	public Vector2 _position { get; private set; }
 	bool _underAttack = false;
 	int _turnsUntilTaken = 0;
 	bool _playerPresent = false;
