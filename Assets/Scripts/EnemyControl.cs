@@ -8,7 +8,7 @@ public class EnemyControl : MonoBehaviour {
 	public Vector2 shotSpeed;
 	public float shotInterval=1.0f;
 	public float minDist;
-
+	public Transform splode;
 	private Vector2 movement;
 	private Rigidbody2D phys;
 	private float nextShot=0;
@@ -35,7 +35,7 @@ public class EnemyControl : MonoBehaviour {
 
 		Vector2 origin = new Vector2(transform.position.x + dir.x,transform.position.y+dir.y);
 
-		hasShot = Physics2D.Raycast (transform.position, dir, Mathf.Infinity,(1 << LayerMask.NameToLayer("Player")) | (1 << LayerMask.NameToLayer("PlayerShot")));
+		hasShot = Physics2D.Raycast (transform.position, dir, Mathf.Infinity,(1 << LayerMask.NameToLayer("Player")) | (1 << LayerMask.NameToLayer("PlayerShot")) | (1 << LayerMask.NameToLayer("Obstacle")));
 		
 		if (hasShot.collider != null) {
 			if (hasShot.collider.name.Equals ("Player")) {
@@ -142,6 +142,10 @@ public class EnemyControl : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.gameObject.GetComponent<ShotScript> () != null) {
+			//splode.transform.position = transform.position;
+			var newsplode = Instantiate(splode);
+			newsplode.transform.position = transform.position;
+			Destroy (newsplode.gameObject,splode.gameObject.GetComponent<ParticleSystem>().duration);
 			Destroy (gameObject);
 		}
 	}
