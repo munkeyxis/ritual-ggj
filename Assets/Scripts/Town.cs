@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Town {
 	ControlledBy _controlledBy = ControlledBy.Neutral;
@@ -8,5 +9,6 @@ public class Town {
 	int _turnsUntilTaken = 0;
 	bool _playerPresent = false;
 	ElementTypes _elementType;
+	List<Town> _adjacentTowns = new List<Town>();
 }
 
