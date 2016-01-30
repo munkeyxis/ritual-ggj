@@ -22,9 +22,28 @@ public class TownManager : MonoBehaviour, IGameManager
 		assignAdjacentcy();
 	}
 
-	public void MoveCharacterToTown(int townIndex) {
-		resetPlayPresence();
-		_towns[townIndex].setPlayerPresent(true);
+	public void MoveCharacterToTown(int destinationTownIndex) {
+		if (isTownAdjacent(destinationTownIndex)) {
+			resetPlayPresence();
+			_towns[destinationTownIndex].setPlayerPresent(true);
+		}
+	}
+
+	bool isTownAdjacent(int destinationTownIndex) {
+		Town currentTown = getCurrentPlayerTownLocation();
+		if(currentTown._adjacentTownIndexes.Contains(destinationTownIndex)) {
+			return true;
+		}
+		return false;
+	}
+
+	Town getCurrentPlayerTownLocation() {
+		foreach (Town town in _towns) {
+			if (town._playerPresent) {
+				return town;
+			}
+		}
+		return _towns[0];
 	}
 
 	void assignAdjacentcy() {

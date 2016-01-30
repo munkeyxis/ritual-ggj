@@ -9,7 +9,7 @@ public class Town {
 	int _turnsUntilTaken = 0;
 	public bool _playerPresent { get; private set;}
 	ElementTypes _elementType;
-	List<int> _adjacentTownIndexes;
+	public List<int> _adjacentTownIndexes { get; private set; }
 
 	public Town(Vector2 position, ControlledBy controlledBy, ElementTypes type, bool playerPresent) {
 		_position = position;
