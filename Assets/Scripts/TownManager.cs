@@ -22,7 +22,6 @@ public class TownManager : MonoBehaviour, IGameManager
 
 	public void MoveCharacterToTown(int townIndex) {
 		resetPlayPresence();
-		Debug.Log("setting player present at town index " + townIndex);
 		_towns[townIndex].setPlayerPresent(true);
 	}
 
