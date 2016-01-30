@@ -1,1 +1,5 @@
 *.sln
+Library/
+Temp/UnityLockfile
+Temp/
+*.csproj
