@@ -7,11 +7,11 @@ public class TownsContoller : MonoBehaviour {
 	public GameObject PlayerPrefab;
 	public GameObject PlayerControlRingPrefab;
 	public GameObject EnemyControlRingPrefab;
-	List<Town> _townsDisplayed;
+	List<GameObject> _controlRingInstances;
 	GameObject playerInstance;
 
 	void Start () {
-		_townsDisplayed = new List<Town> ();
+		_controlRingInstances = new List<GameObject> ();
 
 		drawGameIcons();
 	}
@@ -27,6 +27,8 @@ public class TownsContoller : MonoBehaviour {
 	}
 
 	public void redrawPlayerAndControlRings() {
+		destroyStaleControlRings();
+
 		for(int i = 0; i < Manager.TownManager._towns.Count; i++) {
 			Town town = Manager.TownManager._towns[i];
 
@@ -55,6 +57,13 @@ public class TownsContoller : MonoBehaviour {
 		}
 	}
 
+	void destroyStaleControlRings() {
+		foreach (GameObject controlRing in _controlRingInstances) {
+			Destroy(controlRing);
+		}
+		_controlRingInstances = new List<GameObject>();
+	}
+
 	void displayControlRingIfNecessary(Town town) {
 		if (town._controlledBy == ControlledBy.Player) {
 			instantiateControlRing (town, PlayerControlRingPrefab);
@@ -67,5 +76,6 @@ public class TownsContoller : MonoBehaviour {
 	void instantiateControlRing(Town town, GameObject controlRingPrefab) {
 		GameObject controlRing = Instantiate(controlRingPrefab);
 		controlRing.transform.position = new Vector3(town._position.x, town._position.y, -2);
+		_controlRingInstances.Add(controlRing);
 	}
 }
