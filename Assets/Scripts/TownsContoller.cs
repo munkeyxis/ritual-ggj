@@ -2,14 +2,9 @@
 using System.Collections;
 
 public class TownsContoller : MonoBehaviour {
+	public GameObject TownPrefab;
 
-	// Use this for initialization
 	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+		
 	}
 }
