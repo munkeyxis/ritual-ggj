@@ -17,5 +17,9 @@ public class Town {
 		_elementType = type;
 		_playerPresent = playerPresent;
 	}
+
+	public void setPlayerPresent(bool isPresent) {
+		_playerPresent = isPresent;
+	}
 }
 

@@ -12,10 +12,16 @@ public class TownsContoller : MonoBehaviour {
 	void Start () {
 		_townsDisplayed = new List<Town> ();
 
-		foreach (Town town in Manager.TownManager._towns) {
+		drawGameIcons();
+	}
+
+	public void drawGameIcons() {
+		for(int i = 0; i < Manager.TownManager._towns.Count; i++) {
+			Town town = Manager.TownManager._towns[i];
 			GameObject townInstance = Instantiate (TownPrefab);
 			townInstance.transform.SetParent (this.transform);
 			townInstance.transform.position = town._position;
+			townInstance.GetComponent<TownController>().setTownIndex(i);
 
 			displayPlayerIfNecessary(town);
 			displayControlRingIfNecessary (town);

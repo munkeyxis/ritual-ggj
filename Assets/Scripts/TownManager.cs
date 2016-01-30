@@ -19,5 +19,17 @@ public class TownManager : MonoBehaviour, IGameManager
 		// starting enemy town
 		_towns.Add(new Town(new Vector2(-5, 2), ControlledBy.Enemy, ElementTypes.Water, false));
 	}
+
+	public void MoveCharacterToTown(int townIndex) {
+		resetPlayPresence();
+		Debug.Log("setting player present at town index " + townIndex);
+		_towns[townIndex].setPlayerPresent(true);
+	}
+
+	void resetPlayPresence() {
+		foreach (Town town in _towns) {
+			town.setPlayerPresent(false);
+		}
+	}
 }
 
