@@ -7,5 +7,6 @@ public class Town {
 	bool _underAttack = false;
 	int _turnsUntilTaken = 0;
 	bool _playerPresent = false;
+	ElementTypes _elementType;
 }
 
