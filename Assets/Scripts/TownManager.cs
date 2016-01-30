@@ -4,9 +4,10 @@ using System.Collections.Generic;
 
 public class TownManager : MonoBehaviour, IGameManager
 {
-	List<Town> _towns;
+	public List<Town> _towns { get; private set;}
 
 	public void StartUp() {
+		_towns = new List<Town> ();
 		// starting player town
 		_towns.Add(new Town(new Vector2(5, -2), ControlledBy.Player, ElementTypes.Fire, true));
 
