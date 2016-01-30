@@ -6,9 +6,11 @@ public class PlayerControl : MonoBehaviour {
 	public Vector2 speed = new Vector2(50,50);
 	public GameObject shot;
 	public Vector2 shotSpeed;
+	public float shotInterval=1.0f;
 
 	private Vector2 movement;
 	private Rigidbody2D phys;
+	private float nextShot=0;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +20,8 @@ public class PlayerControl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+		nextShot += Time.deltaTime;
+
 		float inputX = Input.GetAxis ("Horizontal");
 		float inputY = Input.GetAxis ("Vertical");
 
@@ -35,10 +39,11 @@ public class PlayerControl : MonoBehaviour {
 			shotDir = new Vector2(shotSpeed.x,0);
 		}
 
-		if (shotDir != new Vector2(0,0)) {
+		if (shotDir != new Vector2(0,0) && nextShot>shotInterval) {
+			nextShot = 0;
 			GameObject newShot = Instantiate (shot) as GameObject;
 			Rigidbody2D shotPhys = newShot.GetComponent<Rigidbody2D> ();
-
+			Destroy (newShot,3);
 			shotPhys.velocity = shotDir;
 			newShot.transform.position = new Vector2(transform.position.x + shotDir.x/shotSpeed.x,transform.position.y+shotDir.y/shotSpeed.y);
 			//SFX
