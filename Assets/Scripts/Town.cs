@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Town {
-	ControlledBy _controlledBy;
+	public ControlledBy _controlledBy { get; private set; }
 	public Vector2 _position { get; private set; }
 	bool _underAttack = false;
 	int _turnsUntilTaken = 0;

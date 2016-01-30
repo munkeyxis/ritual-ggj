@@ -18,6 +18,7 @@ public class TownsContoller : MonoBehaviour {
 			townInstance.transform.position = town._position;
 
 			displayPlayerIfNecessary(town);
+			displayControlRingIfNecessary (town);
 		}
 	}
 
@@ -26,5 +27,19 @@ public class TownsContoller : MonoBehaviour {
 			GameObject playerInstance = Instantiate(PlayerPrefab);
 			playerInstance.transform.position = new Vector3(town._position.x, town._position.y, -1);
 		}
+	}
+
+	void displayControlRingIfNecessary(Town town) {
+		if (town._controlledBy == ControlledBy.Player) {
+			instantiateControlRing (town, PlayerControlRingPrefab);
+		} 
+		else if (town._controlledBy == ControlledBy.Enemy) {
+			instantiateControlRing (town, EnemyControlRingPrefab);
+		}
+	}
+
+	void instantiateControlRing(Town town, GameObject controlRingPrefab) {
+		GameObject controlRing = Instantiate(controlRingPrefab);
+		controlRing.transform.position = new Vector3(town._position.x, town._position.y, -2);
 	}
 }
