@@ -11,12 +11,14 @@ public class PlayerControl : MonoBehaviour {
 	private Vector2 movement;
 	private Rigidbody2D phys;
 	private float nextShot=0;
+	private Animator animator;
 
 	public static PlayerControl instance;
 
 	// Use this for initialization
 	void Start () {
 		phys = GetComponent<Rigidbody2D> ();
+		animator = GetComponent<Animator> ();
 		instance = this;
 	}
 
@@ -31,7 +33,20 @@ public class PlayerControl : MonoBehaviour {
 
 		movement = new Vector2 (speed.x * inputX, speed.y * inputY);
 
-		Vector2 shotDir = new Vector2(0,0);
+		if (movement.y > 0) {
+			animator.SetInteger ("Dir", 0);
+		} else if (movement.y < 0) {
+			animator.SetInteger ("Dir", 2);
+		} else if (movement.x > 0) {
+			animator.SetInteger ("Dir", 1);
+		} else if (movement.x < 0) {
+			animator.SetInteger ("Dir", 3);
+		} 
+		//else {
+		//	animator.SetInteger ("Dir", 5);
+		//}
+			
+			Vector2 shotDir = new Vector2(0,0);
 
 		// Check shot keys
 		if (Input.GetKey (KeyCode.I)) {
