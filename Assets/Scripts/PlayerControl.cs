@@ -25,6 +25,7 @@ public class PlayerControl : MonoBehaviour {
 	
 		nextShot += Time.deltaTime;
 
+		// Automatically detects WASD
 		float inputX = Input.GetAxis ("Horizontal");
 		float inputY = Input.GetAxis ("Vertical");
 
@@ -32,6 +33,7 @@ public class PlayerControl : MonoBehaviour {
 
 		Vector2 shotDir = new Vector2(0,0);
 
+		// Check shot keys
 		if (Input.GetKey (KeyCode.I)) {
 			shotDir = new Vector2(0,shotSpeed.y);
 		} else if (Input.GetKey (KeyCode.J)) {
@@ -78,7 +80,8 @@ public class PlayerControl : MonoBehaviour {
 			transform.position.z
 			);
 
-		phys.AddForce (movement);
+		// This actually does the moving
+		phys.velocity = movement;
 
 
 	}
