@@ -111,7 +111,8 @@ public class TownsContoller : MonoBehaviour {
 
 	void instantiateControlRing(Town town, GameObject controlRingPrefab) {
 		GameObject controlRing = Instantiate(controlRingPrefab);
-		controlRing.transform.position = new Vector3(town._position.x, town._position.y, -2);
+		float yPos = town._position.y - 0.65f;
+		controlRing.transform.position = new Vector3(town._position.x, yPos, -2);
 		_controlRingInstances.Add(controlRing);
 	}
 }
