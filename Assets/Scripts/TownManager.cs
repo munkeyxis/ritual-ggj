@@ -23,6 +23,10 @@ public class TownManager : MonoBehaviour, IGameManager
 		attackCities();
 	}
 
+	public void setTowns(List<Town> towns) {
+		_towns = towns;
+	}
+
 	public void MoveCharacterToTown(int destinationTownIndex) {
 		if (isTownAdjacent(destinationTownIndex)) {
 			resetPlayPresence();
