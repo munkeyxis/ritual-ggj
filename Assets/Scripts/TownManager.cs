@@ -32,7 +32,7 @@ public class TownManager : MonoBehaviour, IGameManager
 		if (Manager.CombatData._isVictorious) {
 			HandlePlayerVictory ();
 		} else {
-			HandleEnemyAttackTimers ();
+			performTurnOperations ();
 		}
 	}
 
@@ -84,9 +84,12 @@ public class TownManager : MonoBehaviour, IGameManager
 			resetPlayPresence();
 			Town town = _towns[destinationTownIndex];
 			town.setPlayerPresent(true);
-			Manager.TownManager.HandleEnemyAttackTimers ();
-			HandleEnemyAttackTimers ();
 		}
+	}
+
+	public void performTurnOperations() {
+		HandleEnemyAttackTimers ();
+		attackCities();
 	}
 
 	void beginCombat(Town town, int townIndex) {
