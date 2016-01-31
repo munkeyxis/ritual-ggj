@@ -56,7 +56,35 @@ public class TownsContoller : MonoBehaviour {
 		townInstance.transform.SetParent (this.transform);
 		townInstance.transform.position = town._position;
 		townInstance.GetComponent<TownController>().setTownIndex(townIndex);
+		townInstance.GetComponent<SpriteRenderer>().color = getTownColor(town);
 		_townPrefabInstances.Add (townInstance);
+	}
+
+	Color getTownColor(Town town) {
+		Color returnColor;
+		switch (town._elementType) {
+		case ElementTypes.Air: 
+			returnColor = Color.blue;
+
+				break;
+			case ElementTypes.Earth:
+			returnColor = Color.green;
+				break;
+			case ElementTypes.Electric:
+			returnColor = Color.grey;
+				break;
+			case ElementTypes.Fire:
+			Debug.Log ("it is fire");
+			returnColor = Color.red;
+				break;
+			case ElementTypes.Water:
+			returnColor = Color.cyan;
+				break;
+			default:
+			returnColor = Color.white;
+				break;
+		}
+		return returnColor;
 	}
 
 	void instantiatePlayerIconIfNecessary(Town town) {
