@@ -3,3 +3,4 @@ Library/
 Temp/UnityLockfile
 Temp/
 *.csproj
+*.userprefs
