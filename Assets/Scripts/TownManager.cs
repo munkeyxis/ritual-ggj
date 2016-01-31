@@ -13,10 +13,10 @@ public class TownManager : MonoBehaviour, IGameManager
 
 		// neatural towns
 		_towns.Add(new Town(new Vector2(-0.5f, -2.63f), ControlledBy.Neutral, ElementTypes.Earth, false));
-		_towns.Add(new Town(new Vector2(-6f, 2.64f), ControlledBy.Neutral, ElementTypes.Earth, false));
-		_towns.Add(new Town(new Vector2(-3f, -0.2f), ControlledBy.Neutral, ElementTypes.Earth, false));
-		_towns.Add(new Town(new Vector2(0f, 2.12f), ControlledBy.Neutral, ElementTypes.Earth, false));
-		_towns.Add(new Town(new Vector2(-3.12f, 4.1f), ControlledBy.Neutral, ElementTypes.Earth, false));
+		_towns.Add(new Town(new Vector2(-6f, 2.64f), ControlledBy.Neutral, ElementTypes.Air, false));
+		_towns.Add(new Town(new Vector2(-3f, -0.2f), ControlledBy.Neutral, ElementTypes.Electric, false));
+		_towns.Add(new Town(new Vector2(0f, 2.12f), ControlledBy.Neutral, ElementTypes.Fire, false));
+		_towns.Add(new Town(new Vector2(-3.12f, 4.1f), ControlledBy.Neutral, ElementTypes.Water, false));
 		_towns.Add(new Town(new Vector2(5.8f, -1.9f), ControlledBy.Neutral, ElementTypes.Earth, false));
 
 		// starting enemy town
