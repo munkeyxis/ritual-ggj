@@ -11,7 +11,9 @@ public class Manager : MonoBehaviour {
 	private List<IGameManager> _startupList;
 
 	void Awake () {
-		CombatData = new CombatData();
+		if (CombatData == null) {
+			CombatData = new CombatData ();
+		}
 		TownManager = GetComponent<TownManager>();
 
 		_startupList = new List<IGameManager>();
