@@ -24,4 +24,9 @@ public class MenuScript : MonoBehaviour {
 	{
 		Application.LoadLevel ("Help");
 	}
+
+	public void LoadMenu()
+	{
+		Application.LoadLevel ("Title");
+	}
 }
