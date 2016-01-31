@@ -131,9 +131,12 @@ public class UITracker : MonoBehaviour {
 	{
 		var l_end = Instantiate (levelEnd) as GameObject;
 		Text ltext = l_end.GetComponentInChildren<Text> ();
-		if (didwin)
+		if (didwin) {
 			ltext.text = "You Win";
-		else
+			Manager.CombatData._isVictorious = true;
+		} else {
 			ltext.text = "You Lose";
+			Manager.CombatData._isVictorious = false;
+		}
 	}
 }
