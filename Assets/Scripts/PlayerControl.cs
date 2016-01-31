@@ -72,6 +72,7 @@ public class PlayerControl : MonoBehaviour {
 
 		if (shotDir != new Vector2(0,0) && nextShot>shotInterval) {
 			nextShot = 0;
+			// SoundEffectsScript.Instance.PlayShot();
 			GameObject newShot = Instantiate (shot) as GameObject;
 			Rigidbody2D shotPhys = newShot.GetComponent<Rigidbody2D> ();
 			Destroy (newShot,3);
@@ -93,7 +94,7 @@ public class PlayerControl : MonoBehaviour {
 			).x;
 		
 		var topBorder = Camera.main.ViewportToWorldPoint(
-			new Vector3(0, 0.1f, dist)
+			new Vector3(0, 0.07f, dist)
 			).y;
 		
 		var bottomBorder = Camera.main.ViewportToWorldPoint(

@@ -137,19 +137,19 @@ public class EnemyControl : MonoBehaviour {
 		var dist = (transform.position - Camera.main.transform.position).z;
 		
 		var leftBorder = Camera.main.ViewportToWorldPoint(
-			new Vector3(0.1f, 0, dist)
+			new Vector3(0.05f, 0, dist)
 			).x;
 		
 		var rightBorder = Camera.main.ViewportToWorldPoint(
-			new Vector3(0.7f, 0, dist)
+			new Vector3(0.95f, 0, dist)
 			).x;
 		
 		var topBorder = Camera.main.ViewportToWorldPoint(
-			new Vector3(0, 0, dist)
+			new Vector3(0, 0.07f, dist)
 			).y;
 		
 		var bottomBorder = Camera.main.ViewportToWorldPoint(
-			new Vector3(0, 1, dist)
+			new Vector3(0, 0.9f, dist)
 			).y;
 		
 		transform.position = new Vector3(

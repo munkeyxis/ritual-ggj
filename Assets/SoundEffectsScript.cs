@@ -13,6 +13,7 @@ public class SoundEffectsScript : MonoBehaviour {
 	public AudioClip playerHit;
 	public AudioClip youWin;
 	public AudioClip youLose;
+	public AudioClip shot;
 
 	void Awake()
 	{
@@ -32,6 +33,11 @@ public class SoundEffectsScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	public void PlayShot()
+	{
+		MakeSound (shot);
 	}
 
 	public void PlayAirShot()
@@ -57,6 +63,16 @@ public class SoundEffectsScript : MonoBehaviour {
 	public void PlayDeathShot()
 	{
 		MakeSound (deathShot);
+	}
+
+	public void PlayWin()
+	{
+		MakeSound (youWin);
+	}
+
+	public void PlayLose()
+	{
+		MakeSound (youLose);
 	}
 
 	private void MakeSound(AudioClip originalClip)

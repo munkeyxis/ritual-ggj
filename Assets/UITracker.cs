@@ -131,11 +131,17 @@ public class UITracker : MonoBehaviour {
 	{
 		var l_end = Instantiate (levelEnd) as GameObject;
 		Text ltext = l_end.GetComponentInChildren<Text> ();
+		AudioSource src = GetComponent<AudioSource> ();
+
 		if (didwin) {
 			ltext.text = "You Win";
+			src.Stop();
+			SoundEffectsScript.Instance.PlayWin();
 			Manager.CombatData.setVictorious(true);
 		} else {
 			ltext.text = "You Lose";
+			src.Stop ();
+			SoundEffectsScript.Instance.PlayLose();
 			Manager.CombatData.setVictorious(false);
 		}
 	}
