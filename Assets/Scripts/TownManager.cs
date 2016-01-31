@@ -9,15 +9,18 @@ public class TownManager : MonoBehaviour, IGameManager
 	public void StartUp() {
 		_towns = new List<Town> ();
 		// starting player town
-		_towns.Add(new Town(new Vector2(5, -2), ControlledBy.Player, ElementTypes.Fire, true));
+		_towns.Add(new Town(new Vector2(-6.5f, -3.25f), ControlledBy.Player, ElementTypes.Fire, true));
 
 		// neatural towns
-		_towns.Add(new Town(new Vector2(2, -4), ControlledBy.Neutral, ElementTypes.Earth, false));
-		_towns.Add(new Town(new Vector2(1, 2), ControlledBy.Neutral, ElementTypes.Earth, false));
-		_towns.Add(new Town(new Vector2(-3, 5), ControlledBy.Neutral, ElementTypes.Earth, false));
+		_towns.Add(new Town(new Vector2(-0.5f, -2.63f), ControlledBy.Neutral, ElementTypes.Earth, false));
+		_towns.Add(new Town(new Vector2(-6f, 2.64f), ControlledBy.Neutral, ElementTypes.Earth, false));
+		_towns.Add(new Town(new Vector2(-3f, -0.2f), ControlledBy.Neutral, ElementTypes.Earth, false));
+		_towns.Add(new Town(new Vector2(0f, 2.12f), ControlledBy.Neutral, ElementTypes.Earth, false));
+		_towns.Add(new Town(new Vector2(-3.12f, 4.1f), ControlledBy.Neutral, ElementTypes.Earth, false));
+		_towns.Add(new Town(new Vector2(5.8f, -1.9f), ControlledBy.Neutral, ElementTypes.Earth, false));
 
 		// starting enemy town
-		_towns.Add(new Town(new Vector2(-5, 2), ControlledBy.Enemy, ElementTypes.Water, false));
+		_towns.Add(new Town(new Vector2(6.8f, 2.5f), ControlledBy.Enemy, ElementTypes.Water, false));
 
 		assignAdjacentcy();
 		attackCities();
@@ -66,11 +69,14 @@ public class TownManager : MonoBehaviour, IGameManager
 
 	public void SelectTown(int destinationTownIndex) {
 		Town town = _towns [destinationTownIndex];
-		if (town._controlledBy == ControlledBy.Player &&
-		    !town._underAttack) {
-			MoveCharacterToTown(destinationTownIndex);
-		} else {
-			AttackTown(destinationTownIndex);
+		if (isTownAdjacent (destinationTownIndex)) {
+			if (town._controlledBy == ControlledBy.Player &&
+			   !town._underAttack) {
+				MoveCharacterToTown (destinationTownIndex);
+				performTurnOperations ();
+			} else {
+				AttackTown (destinationTownIndex);
+			}
 		}
 	}
 
@@ -80,11 +86,9 @@ public class TownManager : MonoBehaviour, IGameManager
 	}
 
 	public void MoveCharacterToTown(int destinationTownIndex) {
-		if (isTownAdjacent(destinationTownIndex)) {
-			resetPlayPresence();
-			Town town = _towns[destinationTownIndex];
-			town.setPlayerPresent(true);
-		}
+		resetPlayPresence();
+		Town town = _towns[destinationTownIndex];
+		town.setPlayerPresent(true);
 	}
 
 	public void performTurnOperations() {
@@ -130,10 +134,10 @@ public class TownManager : MonoBehaviour, IGameManager
 
 	void assignAdjacentcy() {
 		_towns[0].assignAdjacentTownIndexes(new List<int>(){1,2});
-		_towns[1].assignAdjacentTownIndexes(new List<int>(){0,2});
-		_towns[2].assignAdjacentTownIndexes(new List<int>(){0,1,3,4});
-		_towns[3].assignAdjacentTownIndexes(new List<int>(){2,4});
-		_towns[4].assignAdjacentTownIndexes(new List<int>(){2,3});
+		_towns[1].assignAdjacentTownIndexes(new List<int>(){0,3});
+		_towns[2].assignAdjacentTownIndexes(new List<int>(){0,4});
+		_towns[3].assignAdjacentTownIndexes(new List<int>(){1});
+		_towns[4].assignAdjacentTownIndexes(new List<int>(){2});
 	}
 
 	void attackCities() {
