@@ -34,5 +34,9 @@ public class CombatData {
 			_enemyElementCount = 1;
 		}
 	}
+
+	public void setVictorious(bool isVictorious) {
+		_isVictorious = isVictorious;
+	}
 }
 
