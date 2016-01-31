@@ -142,6 +142,16 @@ public class TownManager : MonoBehaviour, IGameManager
 		return elementCount;
 	}
 
+	public int getElementCountForPlayer(ElementTypes elementType) {
+		int count = 0;
+		foreach (Town town in _towns){
+			if (town._controlledBy == ControlledBy.Player && town._elementType == elementType) {
+				count++;
+			}
+		}
+		return count;
+	}
+
 	bool isTownAdjacent(int destinationTownIndex) {
 		Town currentTown = getCurrentPlayerTownLocation();
 		if(currentTown._adjacentTownIndexes.Contains(destinationTownIndex)) {
