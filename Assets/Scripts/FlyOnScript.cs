@@ -12,7 +12,7 @@ public class FlyOnScript : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		waitTime = 3;
+		waitTime = 1;
 	}
 	
 	// Update is called once per frame

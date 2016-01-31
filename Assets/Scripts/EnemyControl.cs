@@ -61,6 +61,9 @@ public class EnemyControl : MonoBehaviour {
 
 		Vector2 shotDir = new Vector2(0,0);
 
+		if (PlayerControl.instance == null)
+			return;
+
 		nextShot += Time.deltaTime;
 
 		// Do we take a shot?
