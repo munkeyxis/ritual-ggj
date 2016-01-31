@@ -134,10 +134,13 @@ public class TownManager : MonoBehaviour, IGameManager
 
 	void assignAdjacentcy() {
 		_towns[0].assignAdjacentTownIndexes(new List<int>(){1,2});
-		_towns[1].assignAdjacentTownIndexes(new List<int>(){0,3});
-		_towns[2].assignAdjacentTownIndexes(new List<int>(){0,4});
-		_towns[3].assignAdjacentTownIndexes(new List<int>(){1});
-		_towns[4].assignAdjacentTownIndexes(new List<int>(){2});
+		_towns[1].assignAdjacentTownIndexes(new List<int>(){0,3,6});
+		_towns[2].assignAdjacentTownIndexes(new List<int>(){0,5});
+		_towns[3].assignAdjacentTownIndexes(new List<int>(){1,4});
+		_towns[4].assignAdjacentTownIndexes(new List<int>(){3,5,7});
+		_towns[5].assignAdjacentTownIndexes(new List<int>(){2,4});
+		_towns[6].assignAdjacentTownIndexes(new List<int>(){1,7});
+		_towns[7].assignAdjacentTownIndexes(new List<int>(){4,6});
 	}
 
 	void attackCities() {
