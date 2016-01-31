@@ -7,10 +7,12 @@ public class TownsContoller : MonoBehaviour {
 	public GameObject PlayerPrefab;
 	public GameObject PlayerControlRingPrefab;
 	public GameObject EnemyControlRingPrefab;
+	List<GameObject> _townPrefabInstances;
 	List<GameObject> _controlRingInstances;
 	GameObject playerInstance;
 
 	void Start () {
+		_townPrefabInstances = new List<GameObject> ();
 		_controlRingInstances = new List<GameObject> ();
 
 		drawGameIcons();
@@ -23,6 +25,7 @@ public class TownsContoller : MonoBehaviour {
 			drawTownIcons(town, i);
 			instantiatePlayerIconIfNecessary(town);
 			displayControlRingIfNecessary (town);
+			toggleAnimation (town, i);
 		}
 	}
 
@@ -34,7 +37,12 @@ public class TownsContoller : MonoBehaviour {
 
 			movePlayerToThisTownIfNecessary(town);
 			displayControlRingIfNecessary (town);
+			toggleAnimation (town, i);
 		}
+	}
+
+	void toggleAnimation(Town town, int index) {
+		_townPrefabInstances[index].GetComponent<TownController> ().animateTown (town._underAttack);
 	}
 
 	void movePlayerToThisTownIfNecessary(Town town) {
@@ -48,6 +56,7 @@ public class TownsContoller : MonoBehaviour {
 		townInstance.transform.SetParent (this.transform);
 		townInstance.transform.position = town._position;
 		townInstance.GetComponent<TownController>().setTownIndex(townIndex);
+		_townPrefabInstances.Add (townInstance);
 	}
 
 	void instantiatePlayerIconIfNecessary(Town town) {

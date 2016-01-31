@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class Town {
 	public ControlledBy _controlledBy { get; private set; }
 	public Vector2 _position { get; private set; }
-	bool _underAttack = false;
+	public bool _underAttack { get; private set; }
 	int _turnsUntilTaken = 0;
 	public bool _playerPresent { get; private set;}
 	public ElementTypes _elementType { get; private set; }
@@ -17,6 +17,7 @@ public class Town {
 		_elementType = type;
 		_playerPresent = playerPresent;
 		_adjacentTownIndexes = new List<int>();
+		_underAttack = false;
 	}
 
 	public void assignAdjacentTownIndexes(List<int> indexes) {
@@ -27,6 +28,14 @@ public class Town {
 
 	public void setPlayerPresent(bool isPresent) {
 		_playerPresent = isPresent;
+	}
+
+	public void setUnderAttack(bool isUnderAttack) {
+		_underAttack = isUnderAttack;
+	}
+
+	public void setTurnUntilTaken(int turnCount) {
+		_turnsUntilTaken = turnCount;
 	}
 }
 
