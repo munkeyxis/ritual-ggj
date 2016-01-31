@@ -133,10 +133,10 @@ public class UITracker : MonoBehaviour {
 		Text ltext = l_end.GetComponentInChildren<Text> ();
 		if (didwin) {
 			ltext.text = "You Win";
-			Manager.CombatData._isVictorious = true;
+			Manager.CombatData.setVictorious(true);
 		} else {
 			ltext.text = "You Lose";
-			Manager.CombatData._isVictorious = false;
+			Manager.CombatData.setVictorious(false);
 		}
 	}
 }
