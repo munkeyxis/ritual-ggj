@@ -57,7 +57,7 @@ public class TownsContoller : MonoBehaviour {
 		townInstance.transform.position = town._position;
 		townInstance.GetComponent<TownController>().setTownIndex(townIndex);
 		townInstance.GetComponent<SpriteRenderer>().color = getTownColor(town);
-		_townPrefabInstances.Add (townInstance);
+		_townPrefabInstances.Add(townInstance);
 	}
 
 	Color getTownColor(Town town) {
