@@ -28,7 +28,7 @@ public class TownManager : MonoBehaviour, IGameManager
 			resetPlayPresence();
 			Town town = _towns[destinationTownIndex];
 			town.setPlayerPresent(true);
-			// beginCombat(town);
+			beginCombat(town);
 		}
 	}
 
