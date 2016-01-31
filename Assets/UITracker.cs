@@ -59,8 +59,27 @@ public class UITracker : MonoBehaviour {
 			Instantiate (deathBack);
 			break;
 		}
-
+		
 		enemy = enemyObj.GetComponent<EnemyControl> ();
+
+		switch (cd._chosenPlayerElement)
+		{
+		case ElementTypes.Air:
+			Instantiate (airMage);
+			break;
+		case ElementTypes.Earth:
+			Instantiate (earthMage);
+			break;
+		case ElementTypes.Fire:
+			Instantiate (fireMage);
+			break;
+		case ElementTypes.Water:
+			Instantiate (waterMage);
+			break;
+		case ElementTypes.Electric:
+			Instantiate (deathMage);
+			break;
+		}
 
 		enemy.HP = (int)(enemy.HP * (1.0f + (cd._enemyElementCount / 5.0f)));
 		PlayerControl.instance.HP = (int)(PlayerControl.instance.HP*(1.0f + (cd._chosenPlayerElementCount / 5.0f)));
