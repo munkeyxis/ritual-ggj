@@ -6,6 +6,7 @@ public class TownManager : MonoBehaviour, IGameManager
 {
 	public List<Town> _towns { get; private set;}
 	public GameObject Canvas;
+	public GameObject ElementSelectionScreen;
 
 	public void StartUp() {
 		_towns = new List<Town> ();
@@ -129,6 +130,7 @@ public class TownManager : MonoBehaviour, IGameManager
 		Manager.CombatData.setTownType(town._elementType);
 		Manager.WorldDataStore.setCombatTown(townIndex);
 		Canvas.SetActive (true);
+		ElementSelectionScreen.SetActive (true);
 	}
 
 	public int GetElementCountForCharacter(ControlledBy character) {
