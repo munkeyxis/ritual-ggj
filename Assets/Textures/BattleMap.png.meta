@@ -1,17 +1,17 @@
 fileFormatVersion: 2
-guid: 84aa8c27adddcc14a88c78881c5a9625
-timeCreated: 1454198059
+guid: 2566572f213606c4b879558b01988266
+timeCreated: 1454199156
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: WaterMage_0
-    21300002: WaterMage_1
-    21300004: WaterMage_2
-    21300006: WaterMage_3
-    21300008: WaterMage_4
-    21300010: WaterMage_5
-    21300012: WaterMage_6
-    21300014: WaterMage_7
+    21300000: BattleMap_0
+    21300002: BattleMap_1
+    21300004: BattleMap_2
+    21300006: BattleMap_3
+    21300008: BattleMap_4
+    21300010: BattleMap_5
+    21300012: BattleMap_6
+    21300014: BattleMap_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -57,83 +57,83 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: WaterMage_0
+    - name: BattleMap_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 18
-        width: 81
-        height: 71
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: WaterMage_1
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 16
-        width: 79
-        height: 73
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: WaterMage_2
-      rect:
-        serializedVersion: 2
-        x: 215
-        y: 18
-        width: 81
-        height: 71
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: WaterMage_3
-      rect:
-        serializedVersion: 2
-        x: 314
-        y: 16
-        width: 79
-        height: 73
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: WaterMage_4
-      rect:
-        serializedVersion: 2
-        x: 431
-        y: 27
-        width: 48
-        height: 49
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: WaterMage_5
-      rect:
-        serializedVersion: 2
-        x: 521
+        x: 26
         y: 26
-        width: 51
-        height: 50
+        width: 461
+        height: 440
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: WaterMage_6
+    - name: BattleMap_1
       rect:
         serializedVersion: 2
-        x: 623
-        y: 17
-        width: 53
-        height: 58
+        x: 526
+        y: 26
+        width: 461
+        height: 440
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: WaterMage_7
+    - name: BattleMap_2
       rect:
         serializedVersion: 2
-        x: 724
-        y: 16
-        width: 58
-        height: 59
+        x: 1026
+        y: 26
+        width: 461
+        height: 440
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BattleMap_3
+      rect:
+        serializedVersion: 2
+        x: 1526
+        y: 26
+        width: 461
+        height: 440
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BattleMap_4
+      rect:
+        serializedVersion: 2
+        x: 2026
+        y: 26
+        width: 461
+        height: 440
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BattleMap_5
+      rect:
+        serializedVersion: 2
+        x: 2526
+        y: 26
+        width: 461
+        height: 440
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BattleMap_6
+      rect:
+        serializedVersion: 2
+        x: 3026
+        y: 26
+        width: 461
+        height: 440
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: BattleMap_7
+      rect:
+        serializedVersion: 2
+        x: 3526
+        y: 26
+        width: 461
+        height: 440
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

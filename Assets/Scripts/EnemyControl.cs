@@ -13,6 +13,8 @@ public class EnemyControl : MonoBehaviour {
 	private Rigidbody2D phys;
 	private float nextShot=0;
 	private Animator animator;
+	public int HP=100;
+	public int shotDamage=25;
 
 	private readonly Vector2 up = new Vector2(0,1);
 	private readonly Vector2 left = new Vector2(-1,0);
@@ -160,11 +162,21 @@ public class EnemyControl : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D collision)
 	{
 		if (collision.gameObject.GetComponent<ShotScript> () != null) {
-			//splode.transform.position = transform.position;
-			var newsplode = Instantiate(splode);
-			newsplode.transform.position = transform.position;
-			Destroy (newsplode.gameObject,splode.gameObject.GetComponent<ParticleSystem>().duration);
-			Destroy (gameObject);
+			HP-= PlayerControl.instance.shotDamage;
+			if (HP<=0)
+			{
+				UITracker.instance.SetP2Health(0);
+				//splode.transform.position = transform.position;
+				var newsplode = Instantiate(splode);
+				newsplode.transform.position = transform.position;
+				Destroy (newsplode.gameObject,splode.gameObject.GetComponent<ParticleSystem>().duration);
+				Destroy (gameObject);
+				UITracker.instance.EndLevel(true);
+			}
+			else
+			{
+				UITracker.instance.SetP2Health(HP);
+			}
 		}
 	}
 }

@@ -7,11 +7,15 @@ public class PlayerControl : MonoBehaviour {
 	public GameObject shot;
 	public Vector2 shotSpeed;
 	public float shotInterval=1.0f;
+	public GameObject splode;
 
 	private Vector2 movement;
 	private Rigidbody2D phys;
 	private float nextShot=0;
 	private Animator animator;
+
+	public int HP=100;
+	public int shotDamage=25;
 
 	public static PlayerControl instance;
 
@@ -81,19 +85,19 @@ public class PlayerControl : MonoBehaviour {
 		var dist = (transform.position - Camera.main.transform.position).z;
 
 		var leftBorder = Camera.main.ViewportToWorldPoint(
-			new Vector3(0.1f, 0, dist)
+			new Vector3(0.05f, 0, dist)
 			).x;
 		
 		var rightBorder = Camera.main.ViewportToWorldPoint(
-			new Vector3(0.7f, 0, dist)
+			new Vector3(0.95f, 0, dist)
 			).x;
 		
 		var topBorder = Camera.main.ViewportToWorldPoint(
-			new Vector3(0, 0, dist)
+			new Vector3(0, 0.1f, dist)
 			).y;
 		
 		var bottomBorder = Camera.main.ViewportToWorldPoint(
-			new Vector3(0, 1, dist)
+			new Vector3(0, 0.9f, dist)
 			).y;
 		
 		transform.position = new Vector3(
@@ -107,4 +111,26 @@ public class PlayerControl : MonoBehaviour {
 
 
 	}
+
+	void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.GetComponent<ShotScript> () != null) {
+			HP-= PlayerControl.instance.shotDamage;
+			if (HP<=0)
+			{
+				UITracker.instance.SetP1Health(0);
+				//splode.transform.position = transform.position;
+				var newsplode = Instantiate(splode);
+				newsplode.transform.position = transform.position;
+				Destroy (newsplode.gameObject,splode.gameObject.GetComponent<ParticleSystem>().duration);
+				Destroy (gameObject);
+				UITracker.instance.EndLevel(false);
+			}
+			else
+			{
+				UITracker.instance.SetP1Health(HP);
+			}
+		}
+	}
+
 }
