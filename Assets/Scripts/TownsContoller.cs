@@ -3,7 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class TownsContoller : MonoBehaviour {
-	public GameObject TownPrefab;
+	public GameObject FireTown;
+	public GameObject WaterTown;
+	public GameObject EarthTown;
+	public GameObject AirTown;
+	public GameObject DeathTown;
 	public GameObject PlayerPrefab;
 	public GameObject PlayerControlRingPrefab;
 	public GameObject EnemyControlRingPrefab;
@@ -52,39 +56,34 @@ public class TownsContoller : MonoBehaviour {
 	}
 
 	void drawTownIcons(Town town, int townIndex) {
-		GameObject townInstance = Instantiate (TownPrefab);
+		GameObject townInstance = Instantiate (getTownPrefab(town));
 		townInstance.transform.SetParent (this.transform);
 		townInstance.transform.position = town._position;
 		townInstance.GetComponent<TownController>().setTownIndex(townIndex);
-		townInstance.GetComponent<SpriteRenderer>().color = getTownColor(town);
 		_townPrefabInstances.Add(townInstance);
 	}
 
-	Color getTownColor(Town town) {
-		Color returnColor;
+	GameObject getTownPrefab(Town town) {
 		switch (town._elementType) {
-		case ElementTypes.Air: 
-			returnColor = Color.blue;
-
+			case ElementTypes.Air: 
+				return AirTown;
 				break;
 			case ElementTypes.Earth:
-			returnColor = Color.green;
+				return EarthTown;
 				break;
 			case ElementTypes.Electric:
-			returnColor = Color.grey;
+				return DeathTown;
 				break;
 			case ElementTypes.Fire:
-			Debug.Log ("it is fire");
-			returnColor = Color.red;
+				return FireTown;
 				break;
 			case ElementTypes.Water:
-			returnColor = Color.cyan;
+				return WaterTown;
 				break;
 			default:
-			returnColor = Color.white;
+				return FireTown;
 				break;
 		}
-		return returnColor;
 	}
 
 	void instantiatePlayerIconIfNecessary(Town town) {
