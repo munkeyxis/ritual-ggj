@@ -16,6 +16,7 @@ public class TownController : MonoBehaviour {
 	}
 
 	void OnMouseUpAsButton() {
-		Manager.TownManager.AttackTown(_townIndex);
+		Manager.TownManager.SelectTown(_townIndex);
+		this.transform.parent.GetComponent<TownsContoller>().redrawPlayerAndControlRings();
 	}
 }

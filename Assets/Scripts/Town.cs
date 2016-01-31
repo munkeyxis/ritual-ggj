@@ -6,7 +6,7 @@ public class Town {
 	public ControlledBy _controlledBy { get; private set; }
 	public Vector2 _position { get; private set; }
 	public bool _underAttack { get; private set; }
-	int _turnsUntilTaken = 0;
+	public int _turnsUntilTaken { get; private set; }
 	public bool _playerPresent { get; private set;}
 	public ElementTypes _elementType { get; private set; }
 	public List<int> _adjacentTownIndexes { get; private set; }
@@ -18,6 +18,7 @@ public class Town {
 		_playerPresent = playerPresent;
 		_adjacentTownIndexes = new List<int>();
 		_underAttack = false;
+		_turnsUntilTaken = 0;
 	}
 
 	public void setControlledBy(ControlledBy controlledBy) {
@@ -40,6 +41,10 @@ public class Town {
 
 	public void setTurnUntilTaken(int turnCount) {
 		_turnsUntilTaken = turnCount;
+	}
+
+	public void reduceTurnsUntilTaken() {
+		_turnsUntilTaken--;
 	}
 }
 

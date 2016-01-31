@@ -30,7 +30,28 @@ public class TownManager : MonoBehaviour, IGameManager
 	public void UpdateTownsBasedOnCombatResults() {
 		setTownControlledByBasedOnCombatResult ();
 		if (Manager.CombatData._isVictorious) {
-			MoveCharacterToTown (Manager.WorldDataStore._combatTownIndex);
+			HandlePlayerVictory ();
+		}
+		HandleEnemyAttackTimers ();
+	}
+
+	void HandlePlayerVictory() {
+		int townIndex = Manager.WorldDataStore._combatTownIndex;
+		MoveCharacterToTown (townIndex);
+		Manager.TownManager._towns[townIndex].setUnderAttack(false);
+	}
+
+	public void HandleEnemyAttackTimers() {
+		foreach(Town town in _towns) {
+			if (town._underAttack) {
+				if (town._turnsUntilTaken > 0) {
+					town.reduceTurnsUntilTaken();
+				} 
+				else {
+					town.setControlledBy(ControlledBy.Enemy);
+					town.setUnderAttack (false);
+				}
+			}
 		}
 	}
 
@@ -39,6 +60,16 @@ public class TownManager : MonoBehaviour, IGameManager
 		if (Manager.CombatData._isVictorious) {
 			combatTown.setPlayerPresent(true);
 			combatTown.setControlledBy (ControlledBy.Player);
+		}
+	}
+
+	public void SelectTown(int destinationTownIndex) {
+		Town town = _towns [destinationTownIndex];
+		if (town._controlledBy == ControlledBy.Player &&
+		    !town._underAttack) {
+			MoveCharacterToTown(destinationTownIndex);
+		} else {
+			AttackTown(destinationTownIndex);
 		}
 	}
 
