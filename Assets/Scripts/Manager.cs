@@ -29,6 +29,7 @@ public class Manager : MonoBehaviour {
 		} 
 		else {
 			Manager.TownManager.setTowns (Manager.WorldDataStore._towns);
+			Manager.TownManager.UpdateTownsBasedOnCombatResults();
 		}
 	}
 }

@@ -20,6 +20,10 @@ public class Town {
 		_underAttack = false;
 	}
 
+	public void setControlledBy(ControlledBy controlledBy) {
+		_controlledBy = controlledBy;
+	}
+
 	public void assignAdjacentTownIndexes(List<int> indexes) {
 		foreach (int index in indexes) {
 			_adjacentTownIndexes.Add(index);

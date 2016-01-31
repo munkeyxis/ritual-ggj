@@ -27,19 +27,39 @@ public class TownManager : MonoBehaviour, IGameManager
 		_towns = towns;
 	}
 
+	public void UpdateTownsBasedOnCombatResults() {
+		setTownControlledByBasedOnCombatResult ();
+		if (Manager.CombatData._isVictorious) {
+			MoveCharacterToTown (Manager.WorldDataStore._combatTownIndex);
+		}
+	}
+
+	public void setTownControlledByBasedOnCombatResult() {
+		Town combatTown = _towns [Manager.WorldDataStore._combatTownIndex];
+		if (Manager.CombatData._isVictorious) {
+			combatTown.setPlayerPresent(true);
+			combatTown.setControlledBy (ControlledBy.Player);
+		}
+	}
+
+	public void AttackTown(int destinationTownIndex) {
+		Town town = _towns[destinationTownIndex];
+		beginCombat(town, destinationTownIndex);
+	}
+
 	public void MoveCharacterToTown(int destinationTownIndex) {
 		if (isTownAdjacent(destinationTownIndex)) {
 			resetPlayPresence();
 			Town town = _towns[destinationTownIndex];
 			town.setPlayerPresent(true);
-			beginCombat(town);
 		}
 	}
 
-	void beginCombat(Town town) {
+	void beginCombat(Town town, int townIndex) {
 		Manager.CombatData.setPlayerElement(ElementTypes.Fire);
 		Manager.CombatData.setIsNeutral(town);
 		Manager.CombatData.setTownType(town._elementType);
+		Manager.WorldDataStore.setCombatTown(townIndex);
 		Application.LoadLevel("TownBattle");
 	}
 
