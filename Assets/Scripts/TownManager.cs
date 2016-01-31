@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class TownManager : MonoBehaviour, IGameManager
 {
 	public List<Town> _towns { get; private set;}
+	public GameObject Canvas;
 
 	public void StartUp() {
 		_towns = new List<Town> ();
@@ -96,12 +97,38 @@ public class TownManager : MonoBehaviour, IGameManager
 		attackCities();
 	}
 
+	public void setPlayerElementType(int element) {
+		ElementTypes elementAsEnum;
+		switch (element) {
+		case 0:
+			elementAsEnum = ElementTypes.Fire;
+			break;
+		case 1:
+			elementAsEnum = ElementTypes.Water;
+			break;
+		case 2:
+			elementAsEnum = ElementTypes.Air;
+			break;
+		case 3:
+			elementAsEnum = ElementTypes.Earth;
+			break;
+		case 4:
+			elementAsEnum = ElementTypes.Electric;
+			break;
+		default:
+			elementAsEnum = ElementTypes.Fire;
+			break;
+		}
+		Manager.CombatData.setPlayerElement(elementAsEnum);
+
+		Application.LoadLevel("TownBattle");
+	}
+
 	void beginCombat(Town town, int townIndex) {
-		Manager.CombatData.setPlayerElement(ElementTypes.Fire);
 		Manager.CombatData.setIsNeutral(town);
 		Manager.CombatData.setTownType(town._elementType);
 		Manager.WorldDataStore.setCombatTown(townIndex);
-		Application.LoadLevel("TownBattle");
+		Canvas.SetActive (true);
 	}
 
 	public int GetElementCountForCharacter(ControlledBy character) {
