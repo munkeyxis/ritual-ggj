@@ -81,8 +81,8 @@ public class UITracker : MonoBehaviour {
 			break;
 		}
 
-		enemy.HP = (int)(enemy.HP * (1.0f + (cd._enemyElementCount / 5.0f)));
-		PlayerControl.instance.HP = (int)(PlayerControl.instance.HP*(1.0f + (cd._chosenPlayerElementCount / 5.0f)));
+		enemy.HP = (int)(enemy.HP * (1.0f + ((cd._enemyElementCount-1) / 5.0f)));
+		PlayerControl.instance.HP += (cd._chosenPlayerElementCount-1)*20;
 
 		if (cd._townElement == ElementTypes.Water && cd._chosenPlayerElement == ElementTypes.Fire) {
 			enemy.shotDamage += (enemy.shotDamage/5);
@@ -110,6 +110,8 @@ public class UITracker : MonoBehaviour {
 			PlayerControl.instance.shotDamage += (PlayerControl.instance.shotDamage/5);
 		}
 
+		SetP1Health (PlayerControl.instance.HP);
+		SetP2Health (enemy.HP);
 	}
 	
 	// Update is called once per frame
